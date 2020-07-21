@@ -163,6 +163,11 @@ label{
 }
 
 @media screen and (max-width: 500px){
+    .content{
+        padding: 0 1.5rem;
+        width: auto;
+    }
+
     .modal-container{
         width: auto;
     }
@@ -180,4 +185,10 @@ label{
     .photo{
         width: 100px;
     }
+
+    
+header{
+    margin-top: 1rem;
+   
+}
 }
