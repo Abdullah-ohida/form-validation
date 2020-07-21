@@ -18,11 +18,9 @@ function showError(input, message) {
     small.innerText = message;
 }
 
-// Checking input success in form
-function showSuccess(input) {
+function showSuccess(input){
     const formValidate = input.parentElement;
     formValidate.className = "form-validate success";
-   
 }
 
 //Check if email is valid 
@@ -66,28 +64,24 @@ function getUpper(input){
 }
 
 // Check password match
-
 function checkPasswordsMatch(input1, input2){
     if(input1.value !== input2.value){
         showError(input2, "Password do not match");
     }
 }
 
-
 // Form validate
+
 form.addEventListener('submit', function (e) {
     e.preventDefault();
-    checkInputField([username, email, password, confirmPass, checkBox]);
+    checkInputField([username, email, password, confirmPass]);
     checkLength(username, 3, 15);
     checkLength(password, 6, 20);
     checkValid(email);
     checkPasswordsMatch(password, confirmPass);
-    // checkBoxInput(checkBox)
+    modalOverlay.classList.add('open-modal');
 });
 
-submit.addEventListener('click', function(){
-    modalOverlay.classList.add('open-modal')
-})
 
 closeBtn.addEventListener('click', function(){
     modalOverlay.classList.remove('open-modal');
