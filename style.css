@@ -166,6 +166,7 @@ label{
     .content{
         padding: 0 1.5rem;
         width: auto;
+        padding: 1rem;
     }
 
     .modal-container{
