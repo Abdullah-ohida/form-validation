@@ -18,7 +18,7 @@ function showError(input, message) {
     small.innerText = message;
 }
 
-function showSuccess(input){
+function showSuccess(input) {
     const formValidate = input.parentElement;
     formValidate.className = "form-validate success";
 }
@@ -26,51 +26,62 @@ function showSuccess(input){
 //Check if email is valid 
 function checkValid(input) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(re.test(input.value.trim())){
+    if (re.test(input.value.trim())) {
         showSuccess(input);
-    }else{
-        showError(input, "Email is not valid")
+        return true
+    } else {
+        showError(input, "Email is not valid");
+        return false
     }
 }
 
 
 // Check required input
-function checkInputField(inputField){
-    inputField.forEach(function(input){
-        if(input.value.trim() === ''){
+function checkInputField(inputField) {
+    inputField.forEach(function (input) {
+        if (input.value.trim() === '') {
             showError(input, `${getUpper(input)} is required`);
-        }else{
+            return false
+        } else {
             showSuccess(input);
-            
+            return true
         }
     });
 }
 
+
 // Get input lenght
-function checkLength(input, min, max){
-    if(input.value.length < min){
+function checkLength(input, min, max) {
+    if (input.value.length < min) {
         showError(input, `${getUpper(input)} must be at least ${min} character`);
-    }else if(input.value.length > max){
+        return false
+    } else if (input.value.length > max) {
         showError(input, `${getUpper(input)} must be less than ${max} character`);
+        return false
     }
-    else{
+    else {
         showSuccess(input)
+        return true
     }
 }
 
 // Get upper case
-function getUpper(input){
-   return  input.id.charAt(0).toUpperCase() + input.id.slice(1);
+function getUpper(input) {
+    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
 
 // Check password match
-function checkPasswordsMatch(input1, input2){
-    if(input1.value !== input2.value){
+function checkPasswordsMatch(input1, input2) {
+    if (input1.value !== input2.value) {
         showError(input2, "Password do not match");
+        return false
+    }else{
+        return true
     }
 }
 
-// Form validate
+// Form validate;
+
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -79,10 +90,22 @@ form.addEventListener('submit', function (e) {
     checkLength(password, 6, 20);
     checkValid(email);
     checkPasswordsMatch(password, confirmPass);
-    modalOverlay.classList.add('open-modal');
+    if (checkValid(email)) {
+        if(checkLength(password, 6, 20)){
+           if(checkLength(username, 3, 15)){
+               if(checkPasswordsMatch(password, confirmPass)){
+                   modalOverlay.classList.add('open-modal')
+               }
+           }
+        }
+       
+    } else {
+        return
+    }
+}); 
+
+closeBtn.addEventListener('click', function () {
+    modalOverlay.classList.remove('open-modal')
 });
 
 
-closeBtn.addEventListener('click', function(){
-    modalOverlay.classList.remove('open-modal');
-})

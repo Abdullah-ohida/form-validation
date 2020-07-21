@@ -114,6 +114,7 @@ label{
     place-items: center;
     visibility: hidden;
     z-index: -100;
+    padding: 0 1rem;
 }
 
 /*   Open and close modal */
@@ -124,10 +125,10 @@ label{
 }
 
 .modal-container{
+    width: 500px;
     background-color: white;
     border-radius: 5px;
-    width: 500px;
-    padding: 3rem 0;
+    padding: 3rem 1rem;
     text-align: center;
     position: relative;
     text-transform: capitalize;
@@ -150,13 +151,33 @@ label{
 }
 
 .modal-container p{
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 
 .photo{
     max-width: 100%;
     max-height: 100%;
-    width: 200px;
+    width: 100px;
     margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 500px){
+    .modal-container{
+        width: auto;
+    }
+    
+    
+    .close-btn{
+        font-size: 1.5rem;
+    }
+    
+    .modal-container p{
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+    
+    .photo{
+        width: 100px;
+    }
 }
