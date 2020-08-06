@@ -108,4 +108,9 @@ closeBtn.addEventListener('click', function () {
     modalOverlay.classList.remove('open-modal')
 });
 
+closeBtn.addEventListener('click', function(){
+    window.location.reload();
+
+})
+
 
